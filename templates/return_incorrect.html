@@ -7,9 +7,10 @@
 </head>
 <body>
   <div class="centeredcol">
-    <form action="/process_query" method="post">
-      <h1>Incorrect, Try again</h1>
+    <form action="/quiz" method="GET">
+      <h1>Bad luck dude!</h1>
       <input type="text" name="some_location"><br>
+      Type anything to go back!
     </form>
     {% for resp in responses %}
       <div class="candidate">

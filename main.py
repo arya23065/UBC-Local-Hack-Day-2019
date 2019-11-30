@@ -7,6 +7,8 @@ import flask
 # Create the application
 app = flask.Flask(__name__)
 
+index = 0
+answer = ['A', 'B', 'C', 'D', 'E', 'F']
 
 @app.route('/')
 def hello():
@@ -14,9 +16,9 @@ def hello():
 
 
 # path parameters
-@app.route('/<name>')
-def personal_hello(name):
-    return "Hello " + name
+# @app.route('/<name>')
+# def personal_hello(name):
+#     return "Hello " + name
 
 
 # serving hello.html
@@ -26,9 +28,9 @@ def some_page(name) :
 
 
 # serving find.html
-@app.route('/find/<name>', methods=['GET'])
-def some_page1(name) :
-    return flask.render_template('find.html', name=name)
+@app.route('/quiz', methods=['GET'])
+def some_page1() :
+    return flask.render_template('quiz.html')
 
 
 # process query
@@ -37,8 +39,9 @@ def process_query():
     data = flask.request.form
     user_input = data['some_location']
 
-    index = 0
-    answer = ['A', 'D', 'B', 'C', 'C', 'A']
+    global index
+    global answer
+    
     correct_answer = answer[index]
 
     if user_input == correct_answer:
@@ -47,6 +50,18 @@ def process_query():
     elif user_input != correct_answer:
         index += 0
         return flask.render_template('return_incorrect.html')
+
+
+@app.route('/correct_page', methods=['GET'])
+def correct_page():
+    return flask.render_template('quiz.html')
+
+@app.route('/incorrect_page', methods=['GET'])
+def incorrect_page():    
+        return flask.render_template('return_incorrect.html')
+
+
+
 
 
 
