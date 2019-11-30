@@ -36,12 +36,10 @@ def some_page1(name) :
 def process_query():
     data = flask.request.form
     user_input = data['some_location']
-    #print(user_input)
 
     index = 0
     answer = ['A', 'D', 'B', 'C', 'C', 'A']
     correct_answer = answer[index]
-
 
     if user_input == correct_answer:
         index += 1
