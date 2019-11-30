@@ -35,15 +35,48 @@ def some_page1(name) :
 @app.route('/process_query', methods=['POST'])
 def process_query():
     data = flask.request.form
-    location = data['some_location']
-    print(location)
-    return 0
+    user_input = data['some_location']
+    #print(user_input)
+
+    index = 0
+    answer = ['A', 'D', 'B', 'C', 'C', 'A']
+    correct_answer = answer[index]
+
+
+    if user_input == correct_answer:
+        index += 1
+        return flask.render_template('return_correct.html')
+    elif user_input != correct_answer:
+        index += 0
+        return flask.render_template('return_incorrect.html')
+
+
+
+    #return user_input
 
 #     requestString = formRequest(location)
 #     resopnces = makeGET(requestString) ['candidates']
 #     return flask.render_template('find.html',resopnces=resopnces)
 
 # def formRequest(localtion) : 
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
