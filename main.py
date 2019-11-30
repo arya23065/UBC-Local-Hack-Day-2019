@@ -22,7 +22,7 @@ def personal_hello(name):
 # serving hello.html
 @app.route('/fancy/<name>')
 def some_page(name) :
-    return flask.render_template('hello.html', name=name)
+    return flask.render_template('starterpage.html', name=name)
 
 
 # serving find.html
