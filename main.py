@@ -8,11 +8,11 @@ import flask
 app = flask.Flask(__name__)
 
 index = 0
-answer = ['A', 'B', 'C', 'D', 'E', 'F']
+answer = ['Rio Grande', 'B', 'C', 'D', 'E', 'F']
 
 @app.route('/')
-def hello():
-    return "Hello World!"
+def some_page2():
+    return flask.render_template('quiz2.html')
 
 
 # path parameters
@@ -21,23 +21,24 @@ def hello():
 #     return "Hello " + name
 
 
-# serving hello.html
-@app.route('/fancy/<name>')
-def some_page(name) :
-    return flask.render_template('starterpage.html', name=name)
-
-
-# serving find.html
-@app.route('/quiz', methods=['GET'])
-def some_page1() :
-    return flask.render_template('quiz.html')
+# # serving hello.html
+# @app.route('/fancy/<name>')
+# def some_page(name) :
+#     return flask.render_template('starterpage.html', name=name)
+#
+#
+# # serving find.html
+# @app.route('/quiz', methods=['GET'])
+# def some_page1():
+#     return flask.render_template('quiz.html')
 
 
 # process query
-@app.route('/process_query', methods=['POST'])
+@app.route('/process_query', methods=['GET', 'POST'])
 def process_query():
-    data = flask.request.form
-    user_input = data['some_location']
+    data = flask.request.form.get('options')
+    print(data)
+    user_input = str(data)
 
     global index
     global answer
@@ -54,7 +55,7 @@ def process_query():
 
 @app.route('/correct_page', methods=['GET'])
 def correct_page():
-    return flask.render_template('quiz.html')
+    return flask.render_template('return_correct.html')
 
 @app.route('/incorrect_page', methods=['GET'])
 def incorrect_page():    
@@ -72,25 +73,6 @@ def incorrect_page():
 #     return flask.render_template('find.html',resopnces=resopnces)
 
 # def formRequest(localtion) : 
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
